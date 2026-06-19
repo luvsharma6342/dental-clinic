@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Calendar, ArrowRight, ShieldCheck, Star } from "lucide-react";
 
@@ -138,35 +139,28 @@ export default function Hero() {
               </span>
             </div>
 
-            {/* Simulated 3D Interactive UI mockup */}
-            <div className="my-auto py-4 flex flex-col items-center justify-center relative">
-              {/* Spinning/Glow animation effect */}
-              <div className="relative w-44 h-44 rounded-full border border-white/5 flex items-center justify-center">
-                <div className="absolute inset-0 rounded-full border border-dashed border-brand-mint/30 animate-spin [animation-duration:10s]" />
-                <div className="absolute inset-4 rounded-full border border-brand-purple/40 animate-spin [animation-duration:15s] [animation-direction:reverse]" />
-                
-                {/* Center glow smile logo */}
-                <div className="w-28 h-28 rounded-full bg-gradient-to-tr from-brand-dark to-slate-900 border border-white/10 shadow-[0_0_30px_rgba(0,245,212,0.1)] flex flex-col items-center justify-center">
-                  <span className="text-3xl">✨</span>
-                  <span className="font-display font-black text-lg bg-clip-text text-transparent bg-gradient-to-r from-brand-mint to-brand-purple">
-                    SMILE
-                  </span>
-                  <span className="text-[9px] font-bold tracking-widest text-gray-400 uppercase">
-                    Perfector
-                  </span>
-                </div>
-              </div>
+            {/* Real clinic photo display */}
+            <div className="relative w-full h-[220px] rounded-2xl overflow-hidden my-auto border border-white/5 group/img">
+              <Image
+                src="/images/clinic_lounge.png"
+                alt="Dntl.Club Lounge"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              
+              {/* Subtle overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/20 to-transparent pointer-events-none" />
 
               {/* Float tag 1 */}
-              <div className="absolute top-4 left-0 glass-card rounded-2xl px-4 py-2 border border-white/10 flex items-center gap-2 shadow-lg hover:scale-105 transition-transform">
+              <div className="absolute top-3 left-3 glass-card rounded-xl px-3 py-1.5 border border-white/10 flex items-center gap-1.5 shadow-lg backdrop-blur-md">
                 <span className="text-xs">🦷</span>
-                <span className="text-2xs font-bold text-gray-200">Aligner Track</span>
+                <span className="text-[10px] font-bold text-gray-200">Aligner Track</span>
               </div>
 
               {/* Float tag 2 */}
-              <div className="absolute bottom-4 right-0 glass-card rounded-2xl px-4 py-2 border border-white/10 flex items-center gap-2 shadow-lg hover:scale-105 transition-transform">
+              <div className="absolute bottom-3 right-3 glass-card rounded-xl px-3 py-1.5 border border-white/10 flex items-center gap-1.5 shadow-lg backdrop-blur-md">
                 <span className="text-xs">⚡</span>
-                <span className="text-2xs font-bold text-gray-200">1 hr Laser Bright</span>
+                <span className="text-[10px] font-bold text-gray-200">1 hr Laser Bright</span>
               </div>
             </div>
 

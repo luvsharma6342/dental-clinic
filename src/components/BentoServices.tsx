@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
 import { Sparkles, Zap, ShieldAlert, Heart, Activity, ArrowUpRight } from "lucide-react";
 
-// Individual Bento Card Component with Mouse Glow Effect
+// Individual Bento Card Component with Mouse Glow Effect and Dynamic Image Layouts
 function BentoCard({
   title,
   subtitle,
@@ -15,6 +16,8 @@ function BentoCard({
   className = "",
   glowColor = "rgba(0, 245, 212, 0.15)",
   badgeColor = "text-brand-mint bg-brand-mint/10 border-brand-mint/20",
+  imageUrl,
+  imageLayout = "stack",
 }: {
   title: string;
   subtitle: string;
@@ -25,6 +28,8 @@ function BentoCard({
   className?: string;
   glowColor?: string;
   badgeColor?: string;
+  imageUrl?: string;
+  imageLayout?: "split" | "stack";
 }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -61,40 +66,78 @@ function BentoCard({
       {/* Glossy top highlight */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
 
-      {/* Top row */}
-      <div>
-        <div className="flex items-start justify-between">
-          <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-white group-hover:bg-white/10 group-hover:border-white/20 transition-colors">
-            <Icon className="w-6 h-6 text-brand-mint" />
+      {/* Card Content Layout */}
+      <div className={`flex gap-6 h-full w-full ${imageUrl && imageLayout === "split" ? "flex-col md:flex-row md:items-stretch" : "flex-col"}`}>
+        
+        {/* Text Area */}
+        <div className={`flex flex-col justify-between flex-grow ${imageUrl && imageLayout === "split" ? "md:w-3/5" : "w-full"}`}>
+          <div>
+            <div className="flex items-start justify-between">
+              <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-white group-hover:bg-white/10 group-hover:border-white/20 transition-colors">
+                <Icon className="w-6 h-6 text-brand-mint" />
+              </div>
+              <span className={`px-2.5 py-1 rounded-full text-xs font-bold border tracking-wide uppercase ${badgeColor}`}>
+                {badge}
+              </span>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-xs font-bold text-brand-purple tracking-widest uppercase">
+                {subtitle}
+              </h4>
+              <h3 className="text-2xl font-display font-extrabold text-white mt-1 group-hover:text-brand-mint transition-colors">
+                {title}
+              </h3>
+              <p className="text-sm text-gray-400 mt-3 font-sans leading-relaxed">
+                {description}
+              </p>
+            </div>
           </div>
-          <span className={`px-2.5 py-1 rounded-full text-xs font-bold border tracking-wide uppercase ${badgeColor}`}>
-            {badge}
-          </span>
+
+          {/* Footer inside text area if split layout */}
+          {imageUrl && imageLayout === "split" && (
+            <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
+              <div>
+                <span className="text-[10px] text-gray-500 uppercase tracking-widest block">Start Vibe Price</span>
+                <span className="text-sm font-black text-white">{priceInfo}</span>
+              </div>
+              <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white group-hover:bg-brand-mint group-hover:text-brand-dark group-hover:border-transparent transition-all">
+                <ArrowUpRight className="w-4 h-4" />
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Content */}
-        <div className="mt-6">
-          <h4 className="text-xs font-bold text-brand-purple tracking-widest uppercase">
-            {subtitle}
-          </h4>
-          <h3 className="text-2xl font-display font-extrabold text-white mt-1 group-hover:text-brand-mint transition-colors">
-            {title}
-          </h3>
-          <p className="text-sm text-gray-400 mt-3 font-sans leading-relaxed">
-            {description}
-          </p>
-        </div>
-      </div>
+        {/* Image Area */}
+        {imageUrl && (
+          <div className={`rounded-2xl overflow-hidden border border-white/5 relative shrink-0 ${
+            imageLayout === "split" 
+              ? "md:w-2/5 w-full h-[200px] md:h-auto min-h-[200px] md:min-h-none" 
+              : "w-full h-[150px] mt-4"
+          }`}>
+            <Image
+              src={imageUrl}
+              alt={title}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/30 via-transparent to-transparent pointer-events-none" />
+          </div>
+        )}
 
-      {/* Footer info (price + interaction hint) */}
-      <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
-        <div>
-          <span className="text-[10px] text-gray-500 uppercase tracking-widest block">Start Vibe Price</span>
-          <span className="text-sm font-black text-white">{priceInfo}</span>
-        </div>
-        <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white group-hover:bg-brand-mint group-hover:text-brand-dark group-hover:border-transparent transition-all">
-          <ArrowUpRight className="w-4 h-4" />
-        </div>
+        {/* Standard Footer if not split layout */}
+        {(!imageUrl || imageLayout !== "split") && (
+          <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between w-full">
+            <div>
+              <span className="text-[10px] text-gray-500 uppercase tracking-widest block">Start Vibe Price</span>
+              <span className="text-sm font-black text-white">{priceInfo}</span>
+            </div>
+            <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white group-hover:bg-brand-mint group-hover:text-brand-dark group-hover:border-transparent transition-all">
+              <ArrowUpRight className="w-4 h-4" />
+            </div>
+          </div>
+        )}
+
       </div>
     </motion.div>
   );
@@ -129,7 +172,7 @@ export default function BentoServices() {
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
           
-          {/* Card 1: Clear Aligners (Flagship) - Width: 4/6 on medium, full on mobile */}
+          {/* Card 1: Clear Aligners (Flagship) - Width: 4/6 on medium, split layout with aesthetic smile */}
           <BentoCard
             title="Clear Smile Aligners"
             subtitle="The Invisible Fix"
@@ -137,7 +180,9 @@ export default function BentoServices() {
             description="Upgrade your alignment without the metal bracket drama. Custom clear aligners designed in 3D that fit your active lifestyle. Incredibly comfortable, practically invisible, and fully tracked on your app."
             priceInfo="₹1,999/month EMI"
             icon={Sparkles}
-            className="md:col-span-4 min-h-[360px]"
+            imageUrl="/images/aesthetic_smile.png"
+            imageLayout="split"
+            className="md:col-span-4 min-h-[380px]"
             glowColor="rgba(123, 44, 191, 0.2)"
             badgeColor="text-brand-purple bg-brand-purple/10 border-brand-purple/20"
           />
@@ -177,7 +222,7 @@ export default function BentoServices() {
             badgeColor="text-rose-400 bg-rose-500/10 border-rose-500/20"
           />
 
-          {/* Card 5: AI Diagnosis - Width: 2/6 */}
+          {/* Card 5: AI Diagnosis - Width: 2/6, stacked layout with tech diagnosis image */}
           <BentoCard
             title="3D AI Smile Scan"
             subtitle="Tech Diagnosis"
@@ -185,6 +230,8 @@ export default function BentoServices() {
             description="Get a high-resolution 3D virtual walkthrough of your mouth. See simulated alignment results in under 5 minutes."
             priceInfo="₹0 (with consultation)"
             icon={Activity}
+            imageUrl="/images/tech_diagnosis.png"
+            imageLayout="stack"
             className="md:col-span-2"
           />
 
