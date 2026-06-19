@@ -9,7 +9,7 @@ export default function Footer() {
     <>
       <footer className="bg-black/40 border-t border-white/5 pt-16 pb-8 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
-          
+
           {/* Brand Col - 4 cols */}
           <div className="md:col-span-4 flex flex-col items-start space-y-4 text-left">
             <div className="flex items-center gap-2">
@@ -75,7 +75,7 @@ export default function Footer() {
                 <span>collab@dntl.club</span>
               </div>
             </div>
-            
+
             {/* Stylized map placeholder */}
             <div className="w-full h-24 rounded-2xl bg-white/5 border border-white/10 relative overflow-hidden flex items-center justify-center group hover:border-brand-mint/30 transition-all cursor-pointer">
               <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px] opacity-10 group-hover:opacity-20 transition-opacity" />
@@ -102,18 +102,18 @@ export default function Footer() {
 
       {/* FIXED FLOATING ACTION WIDGETS (Bottom corner layout) */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3.5 pointer-events-none">
-        
+
         {/* Urgent Call Trigger - Pinned with pulse animation */}
         <a
-          href="tel:+919876543210"
+          href="tel:+917668861953"
           className="pointer-events-auto flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-brand-dark hover:bg-slate-900 border border-white/10 text-rose-400 hover:text-rose-300 hover:scale-105 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all cursor-pointer relative group"
           title="Emergency Call"
         >
           {/* Ring pulse */}
           <span className="absolute inset-0 rounded-full bg-rose-500/10 animate-ping [animation-duration:1.5s]" />
-          
+
           <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
-          
+
           {/* Hover Label */}
           <span className="absolute right-14 scale-0 group-hover:scale-100 transition-transform origin-right bg-brand-dark border border-white/10 px-3 py-1.5 rounded-xl text-2xs font-bold text-white tracking-wide uppercase whitespace-nowrap">
             Emergency Call
@@ -122,7 +122,7 @@ export default function Footer() {
 
         {/* Direct WhatsApp Trigger - Pinned with green glowing vibes */}
         <a
-          href="https://wa.me/919876543210?text=Hey%20Dntl.Club!%20I'd%20like%20to%20upgrade%20my%20smile%20status."
+          href="https://wa.me/917668861953?text=Hey%20Dntl.Club!%20I'd%20like%20to%20upgrade%20my%20smile%20status."
           target="_blank"
           rel="noreferrer"
           className="pointer-events-auto flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#25D366] hover:bg-[#20ba59] hover:scale-105 shadow-[0_4px_20px_rgba(37,211,102,0.3)] transition-all cursor-pointer relative group"
@@ -130,7 +130,7 @@ export default function Footer() {
         >
           {/* Ring pulse */}
           <span className="absolute inset-0 rounded-full bg-[#25D366]/20 animate-ping [animation-duration:2s]" />
-          
+
           <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 text-white fill-white/10" />
 
           {/* Hover Label */}

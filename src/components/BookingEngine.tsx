@@ -52,7 +52,7 @@ const getNextSevenDays = () => {
   const days = [];
   const weekdayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  
+
   for (let i = 0; i < 7; i++) {
     const d = new Date();
     d.setDate(d.getDate() + i);
@@ -106,7 +106,7 @@ export default function BookingEngine() {
     if (step === 1 && !treatment) return;
     if (step === 2 && !doctorId) return;
     if (step === 3 && (!selectedDate || !selectedTime)) return;
-    
+
     if (step === 4) {
       if (!clientName || !clientPhone) return;
       setIsSubmitted(true);
@@ -142,7 +142,7 @@ export default function BookingEngine() {
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-purple/5 blur-3xl pointer-events-none rounded-full" />
 
       <div className="max-w-4xl mx-auto px-6 relative z-10">
-        
+
         {/* Title */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-brand-mint/10 border border-brand-mint/20 text-xs font-semibold text-brand-mint uppercase tracking-wider mb-4">
@@ -162,19 +162,19 @@ export default function BookingEngine() {
 
         {/* Booking Card Frame */}
         <div className="glass-card rounded-[32px] overflow-hidden border border-white/10 shadow-2xl relative">
-          
+
           {/* Progress bar */}
           {!isSubmitted && (
             <div className="w-full bg-white/5 h-2">
-              <div 
-                className="bg-gradient-to-r from-brand-mint to-brand-purple h-full transition-all duration-500 ease-out" 
+              <div
+                className="bg-gradient-to-r from-brand-mint to-brand-purple h-full transition-all duration-500 ease-out"
                 style={{ width: `${(step / 4) * 100}%` }}
               />
             </div>
           )}
 
           <div className="p-5 sm:p-10">
-            
+
             <AnimatePresence mode="wait">
               {isSubmitted ? (
                 /* Success screen */
@@ -235,7 +235,7 @@ export default function BookingEngine() {
                   exit={{ x: -20, opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  
+
                   {/* Step Title Header */}
                   <div className="flex items-center gap-3 mb-8">
                     <div className="w-8 h-8 rounded-lg bg-brand-purple/20 border border-brand-purple/30 flex items-center justify-center font-display font-bold text-brand-purple">
@@ -264,11 +264,10 @@ export default function BookingEngine() {
                         <button
                           key={t.id}
                           onClick={() => setTreatment(t.id)}
-                          className={`flex items-center justify-between p-5 rounded-2xl border text-left transition-all cursor-pointer ${
-                            treatment === t.id
+                          className={`flex items-center justify-between p-5 rounded-2xl border text-left transition-all cursor-pointer ${treatment === t.id
                               ? "bg-brand-mint/10 border-brand-mint text-white shadow-[0_0_15px_rgba(0,245,212,0.15)]"
                               : "bg-white/5 border-white/10 text-gray-300 hover:bg-white/10 hover:border-white/20"
-                          }`}
+                            }`}
                         >
                           <div className="flex items-center gap-4">
                             <span className="text-2xl">{t.icon}</span>
@@ -277,9 +276,8 @@ export default function BookingEngine() {
                               <p className="text-xs text-gray-400 mt-0.5">{t.price}</p>
                             </div>
                           </div>
-                          <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${
-                            treatment === t.id ? "border-brand-mint bg-brand-mint text-brand-dark" : "border-white/25"
-                          }`}>
+                          <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${treatment === t.id ? "border-brand-mint bg-brand-mint text-brand-dark" : "border-white/25"
+                            }`}>
                             {treatment === t.id && <span className="text-[10px] font-bold">✓</span>}
                           </div>
                         </button>
@@ -295,13 +293,11 @@ export default function BookingEngine() {
                           key={doc.id}
                           disabled={!doc.available}
                           onClick={() => setDoctorId(doc.id)}
-                          className={`w-full flex flex-col sm:flex-row items-stretch sm:items-center justify-between p-5 rounded-2xl border text-left transition-all relative ${
-                            !doc.available ? "opacity-40 cursor-not-allowed bg-black/20 border-white/5" : "cursor-pointer"
-                          } ${
-                            doctorId === doc.id
+                          className={`w-full flex flex-col sm:flex-row items-stretch sm:items-center justify-between p-5 rounded-2xl border text-left transition-all relative ${!doc.available ? "opacity-40 cursor-not-allowed bg-black/20 border-white/5" : "cursor-pointer"
+                            } ${doctorId === doc.id
                               ? "bg-brand-purple/10 border-brand-purple text-white shadow-[0_0_15px_rgba(123,44,191,0.15)]"
                               : doc.available ? "bg-white/5 border-white/10 text-gray-300 hover:bg-white/10 hover:border-white/20" : ""
-                          }`}
+                            }`}
                         >
                           <div className="flex items-center gap-4">
                             <span className="text-3xl bg-white/5 w-12 h-12 rounded-xl flex items-center justify-center border border-white/10">
@@ -332,9 +328,8 @@ export default function BookingEngine() {
 
                           {doc.available && (
                             <div className="flex items-center justify-end mt-4 sm:mt-0">
-                              <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${
-                                doctorId === doc.id ? "border-brand-purple bg-brand-purple text-white" : "border-white/25"
-                              }`}>
+                              <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${doctorId === doc.id ? "border-brand-purple bg-brand-purple text-white" : "border-white/25"
+                                }`}>
                                 {doctorId === doc.id && <span className="text-[10px] font-bold">✓</span>}
                               </div>
                             </div>
@@ -360,11 +355,10 @@ export default function BookingEngine() {
                                 setSelectedDate(d.dateStr);
                                 setSelectedTime(""); // Clear previous time slot selection
                               }}
-                              className={`flex flex-col items-center justify-center p-3.5 rounded-xl border text-center transition-all cursor-pointer ${
-                                selectedDate === d.dateStr
+                              className={`flex flex-col items-center justify-center p-3.5 rounded-xl border text-center transition-all cursor-pointer ${selectedDate === d.dateStr
                                   ? "bg-brand-mint/10 border-brand-mint text-white"
                                   : "bg-white/5 border-white/10 text-gray-400 hover:bg-white/10 hover:border-white/20"
-                              }`}
+                                }`}
                             >
                               <span className="text-[10px] font-bold uppercase tracking-wider block opacity-75">{d.dayName}</span>
                               <span className="text-lg font-display font-black block mt-1">{d.dateNum}</span>
@@ -400,13 +394,11 @@ export default function BookingEngine() {
                                       key={time}
                                       disabled={isUnavailable}
                                       onClick={() => setSelectedTime(time)}
-                                      className={`py-3.5 rounded-xl border text-center text-sm font-bold tracking-tight transition-all relative ${
-                                        isUnavailable ? "opacity-30 cursor-not-allowed bg-black/10 border-white/5" : "cursor-pointer"
-                                      } ${
-                                        selectedTime === time
+                                      className={`py-3.5 rounded-xl border text-center text-sm font-bold tracking-tight transition-all relative ${isUnavailable ? "opacity-30 cursor-not-allowed bg-black/10 border-white/5" : "cursor-pointer"
+                                        } ${selectedTime === time
                                           ? "bg-brand-purple/20 border-brand-purple text-white shadow-[0_0_10px_rgba(123,44,191,0.15)]"
                                           : !isUnavailable ? "bg-white/5 border-white/10 text-gray-300 hover:bg-white/10 hover:border-white/20" : ""
-                                      }`}
+                                        }`}
                                     >
                                       {time}
                                     </button>
@@ -432,13 +424,11 @@ export default function BookingEngine() {
                                       key={time}
                                       disabled={isUnavailable}
                                       onClick={() => setSelectedTime(time)}
-                                      className={`py-3.5 rounded-xl border text-center text-sm font-bold tracking-tight transition-all relative ${
-                                        isUnavailable ? "opacity-30 cursor-not-allowed bg-black/10 border-white/5" : "cursor-pointer"
-                                      } ${
-                                        selectedTime === time
+                                      className={`py-3.5 rounded-xl border text-center text-sm font-bold tracking-tight transition-all relative ${isUnavailable ? "opacity-30 cursor-not-allowed bg-black/10 border-white/5" : "cursor-pointer"
+                                        } ${selectedTime === time
                                           ? "bg-brand-purple/20 border-brand-purple text-white shadow-[0_0_10px_rgba(123,44,191,0.15)]"
                                           : !isUnavailable ? "bg-white/5 border-white/10 text-gray-300 hover:bg-white/10 hover:border-white/20" : ""
-                                      }`}
+                                        }`}
                                     >
                                       {time}
                                     </button>
@@ -457,7 +447,7 @@ export default function BookingEngine() {
                   {/* STEP 4: CONTACT CAPTURE */}
                   {step === 4 && (
                     <div className="space-y-6">
-                      
+
                       {/* Booking Summary Card */}
                       <div className="bg-white/5 border border-white/10 rounded-2xl p-5 grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
                         <div>
@@ -506,7 +496,7 @@ export default function BookingEngine() {
                               type="tel"
                               value={clientPhone}
                               onChange={(e) => setClientPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
-                              placeholder="9876543210"
+                              placeholder="7668861953"
                               required
                               className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-14 pr-4 text-white text-sm focus:outline-none focus:border-brand-mint focus:bg-white/10 transition-colors"
                             />
@@ -523,13 +513,13 @@ export default function BookingEngine() {
                             <p className="text-[10px] text-gray-400 mt-0.5">Receive reminders, maps, and pre-care notes</p>
                           </div>
                         </div>
-                        
+
                         <label className="relative inline-flex items-center cursor-pointer">
-                          <input 
-                            type="checkbox" 
-                            checked={whatsAppOptIn} 
+                          <input
+                            type="checkbox"
+                            checked={whatsAppOptIn}
                             onChange={() => setWhatsAppOptIn(!whatsAppOptIn)}
-                            className="sr-only peer" 
+                            className="sr-only peer"
                           />
                           <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-mint"></div>
                         </label>
