@@ -195,6 +195,8 @@ export default function BentoServices() {
             description="Rapid clinical-grade whitening. Lift up to 8 shades of coffee/tea stains in just under an hour. Complete with enamel protection."
             priceInfo="₹4,999 onwards"
             icon={Zap}
+            imageUrl="/images/laser_whitening.png"
+            imageLayout="stack"
             className="md:col-span-2"
           />
 
@@ -206,6 +208,8 @@ export default function BentoServices() {
             description="Deep clean scaling using advanced ultrasonic vibrations that gently shake tartar away, followed by air-polishing spa therapy."
             priceInfo="₹1,499 flat"
             icon={Heart}
+            imageUrl="/images/clean_scaling.png"
+            imageLayout="stack"
             className="md:col-span-2"
           />
 
@@ -217,6 +221,8 @@ export default function BentoServices() {
             description="Suffering from tooth aches? No more drills from hell. We use rotary endodontics and local numbing gels for zero-stress treatments."
             priceInfo="₹3,999 flat"
             icon={ShieldAlert}
+            imageUrl="/images/painless_canal.png"
+            imageLayout="stack"
             className="md:col-span-2"
             glowColor="rgba(239, 68, 68, 0.15)"
             badgeColor="text-rose-400 bg-rose-500/10 border-rose-500/20"
