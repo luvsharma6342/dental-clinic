@@ -83,7 +83,7 @@ export default function SocialProof() {
       </div>
 
       {/* Infinite scrolling marquee container */}
-      <div className="relative w-full flex items-center justify-start py-4 overflow-hidden mask-gradient-x">
+      <div className="relative w-full py-4 overflow-hidden mask-gradient-x">
         {/* Soft edge fade overlays */}
         <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#0B0F19] to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#0B0F19] to-transparent z-10 pointer-events-none" />

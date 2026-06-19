@@ -35,7 +35,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#0B0F19] text-gray-100 font-sans selection:bg-brand-mint selection:text-brand-dark">
+    <div className="flex flex-col min-h-screen max-w-full overflow-x-hidden bg-[#0B0F19] text-gray-100 font-sans selection:bg-brand-mint selection:text-brand-dark">
       
       {/* HEADER / NAVIGATION */}
       <header
